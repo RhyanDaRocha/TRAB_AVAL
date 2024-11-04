@@ -1,4 +1,4 @@
-function h(a) {
+function soumteste(a) {
     let b = [];
     for (let i = 0; i < a.length; i++) {
         if (a[i] % 2 === 0) {
