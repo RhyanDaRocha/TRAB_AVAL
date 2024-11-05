@@ -1,0 +1,19 @@
+{
+  "name": "trab_aval",
+  "version": "1.0.0",
+  "description": "NOME E MATRICULA DOS INTEGRANTES:\r RHYAN DA ROCHA FERREIRA - 2412838\r JEAN MATHEUS DE SOUSA SILVA - 2412817\r YURI TEIXEIRA DA SILVA - 2412862",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "linter" : "eslint src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "eslint": "^9.14.0",
+    "globals": "^15.12.0"
+    
+  }
+}
