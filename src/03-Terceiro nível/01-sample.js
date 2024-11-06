@@ -1,6 +1,6 @@
 async function buscarEDetalharNave() {
     try {
-        const resposta = await fetch('https://swapi.dev/api/starships/9/');
+        const resposta = await fetch("https://swapi.dev/api/starships/9/");
         const nave = await resposta.json();
 
         const detalhesNave = `
@@ -14,13 +14,13 @@ async function buscarEDetalharNave() {
 
         const tamanhoTripulacao = parseInt(nave.crew);
         if (tamanhoTripulacao > 100) {
-            console.log('Esta é uma nave grande.');
+            console.log("Esta é uma nave grande.");
         } else {
-            console.log('Esta é uma nave pequena.');
+            console.log("Esta é uma nave pequena.");
         }
 
     } catch (erro) {
-        console.error('Erro ao buscar detalhes da nave:', erro);
+        console.error("Erro ao buscar detalhes da nave:", erro);
     }
 }
 

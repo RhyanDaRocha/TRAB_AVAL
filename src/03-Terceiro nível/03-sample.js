@@ -19,7 +19,7 @@ async function buscarEDetalharPlaneta(idPlaneta) {
             console.log("Este planeta tem uma população pequena.");
         }
     } catch (erro) {
-        console.error('Erro ao buscar o planeta:', erro);
+        console.error("Erro ao buscar o planeta:", erro);
     }
 }
 

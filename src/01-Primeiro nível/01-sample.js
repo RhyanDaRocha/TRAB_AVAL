@@ -1,6 +1,6 @@
-
+//Mudei o nome da função so pra testar commit
 function soumteste(a) {
-    let b = [];
+    const b = [];
     for (let i = 0; i < a.length; i++) {
         if (a[i] % 2 === 0) {
             b.push(a[i]);
@@ -9,6 +9,6 @@ function soumteste(a) {
     return b;
 }
 
-let x = [1, 2, 3, 4, 5, 6];
-let y = h(x);
+const x = [1, 2, 3, 4, 5, 6];
+const y = soumteste(x);
 console.log(y);

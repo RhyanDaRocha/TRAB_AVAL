@@ -18,7 +18,7 @@ async function buscarPersonagemENave(idPersonagem) {
         }
 
     } catch (erro) {
-        console.error('Erro ao buscar o personagem ou sua nave:', erro);
+        console.error("Erro ao buscar o personagem ou sua nave:", erro);
     }
 }
 
