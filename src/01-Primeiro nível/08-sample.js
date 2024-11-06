@@ -1,7 +1,8 @@
-const p = { n: "Maria", i: 28 };
+const dadosDaPessoa = { nomeDaPessoa: "Maria", idadeDaPessoa: 28 };
 
-function maior(pessoa) {
-    return pessoa.i >= 18;
+function calcularSeEMaiorDeIdade(pessoa) {
+    const numeroQueDeterminaMaioridade = 18;
+    return pessoa.idadeDaPessoa >= numeroQueDeterminaMaioridade;
 }
 
-console.log(maior(p));
+console.log(calcularSeEMaiorDeIdade(dadosDaPessoa));

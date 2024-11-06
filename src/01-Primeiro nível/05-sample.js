@@ -1,11 +1,11 @@
-const a = "João";
-const b = "Ana";
-const c = "Carlos";
+const nomeDaPessoa = "João";
+const  nomeDaPessoa2 = "Ana";
+const  nomeDaPessoa3 = "Carlos";
 
-function p() {
-    console.log(a);
-    console.log(b);
-    console.log(c);
+function mostrarNomeDaPessoa() {
+    console.log( nomeDaPessoa);
+    console.log( nomeDaPessoa2);
+    console.log( nomeDaPessoa3);
 }
 
-p();
+mostrarNomeDaPessoa();
