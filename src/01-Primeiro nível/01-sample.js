@@ -1,14 +1,22 @@
-//Mudei o nome da função so pra testar commit
-function soumteste(a) {
-    const b = [];
-    for (let i = 0; i < a.length; i++) {
-        if (a[i] % 2 === 0) {
-            b.push(a[i]);
+function filtrarNumerosPares(numeros) {
+    const numerosPares = [];
+    const numeroQueDeterminaDivisibilidade = 2; 
+
+    for (let i = 0; i < numeros.length; i++) {
+        if (numeros[i] % numeroQueDeterminaDivisibilidade === 0) {
+            numerosPares.push(numeros[i]);
         }
     }
-    return b;
+    return numerosPares;
 }
+const primeiroNumero = 1;
+const segundoNumero = 2;
+const terceiroNumero = 3;
+const quartoNumero = 4;
+const quintoNumero = 5;
+const sextoNumero = 6;
 
-const x = [1, 2, 3, 4, 5, 6];
-const y = soumteste(x);
-console.log(y);
+
+const listaDeNumerosPositivo = [primeiroNumero, segundoNumero, terceiroNumero, quartoNumero, quintoNumero, sextoNumero];
+const numerosParesFiltrados = filtrarNumerosPares(listaDeNumerosPositivo);
+console.log(numerosParesFiltrados);

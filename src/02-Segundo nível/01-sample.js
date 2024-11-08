@@ -1,6 +1,7 @@
 function calcularDesconto(preco) {
-    return preco - (preco * 0.15);
+    const descontoPadrao = 0.15;
+    return preco - (preco * descontoPadrao);
 }
-
-const precoFinal = calcularDesconto(100);
+const fatorPreco = 100;
+const precoFinal = calcularDesconto(fatorPreco);
 console.log(`Preço com desconto: ${precoFinal}`);
