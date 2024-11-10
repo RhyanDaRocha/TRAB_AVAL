@@ -24,6 +24,8 @@ async function buscarPersonagem() {
     }
 }
 
+buscarPersonagem();
+
 function mostrarErro(mensagem, tipo) {
     const mensagemDiv = document.getElementById("mensagem");
     mensagemDiv.innerHTML = `<div class="alert alert-${tipo}" role="alert">${mensagem}</div>`;
