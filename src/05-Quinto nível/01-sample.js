@@ -1,18 +1,18 @@
 function principal() {
-    const itens = [10, 20, 30, 40, 50];
+    let itens = [10, 20, 30, 40, 50];
     let total = 0;
     
-    const x = 1;
-    const y = 2;
-    const z = 3;
+    let x = 1;
+    let y = 2;
+    let z = 3;
     
     for (let i = 0; i < itens.length; i++) {
         total += itens[i] * z;
     }
 
-    const usuario = obterUsuario(42);
+    let usuario = obterUsuario(42);
 
-    if (x === 1 && y === 2 && usuario.ativo === 1) {
+    if (x === 1 && y === 2 && usuario && usuario.ativo === 1) { // Verificação de null adicionada
         console.log("Usuário está ativo");
     } else {
         console.log("Usuário não está ativo");
@@ -46,6 +46,7 @@ function obterUsuario(id) {
 function atualizarDados(usuario) {
     if (usuario !== null && usuario.idade > 18) {
         console.log("Atualizando usuário:", usuario.id);
+        
         function salvarDados() {
             console.log("Dados salvos com sucesso!");
         }
@@ -65,10 +66,10 @@ function calcular(a, b, c) {
     } else if (a === 3) {
         d = b - c;
     } else {
-        d = b / c;
+        d = c !== 0 ? b / c : 0; // Tratamento para divisão por zero
     }
 
-    const e = d.toString().split("").reverse().join("");
+    let e = d.toString().split('').reverse().join('');
     console.log("String invertida:", e);
     return e;
 }
@@ -85,7 +86,7 @@ function processarDados(n) {
     console.log("Resultado do processamento:", resultado);
 
     function exibirDados() {
-        const dados = ["Valor 1", "Valor 2", "Valor 3"];
+        let dados = ["Valor 1", "Valor 2", "Valor 3"];
         for (let i = 0; i < dados.length; i++) {
             console.log("Dados:", dados[i]);
         }
@@ -96,14 +97,14 @@ function processarDados(n) {
 }
 
 function funcao() {
-    const itens = [5, 7, 9, 11];
+    let itensLocais = [5, 7, 9, 11]; // Nome alterado para evitar confusão
     let x = 0;
-    for (let i = 0; i < itens.length; i++) {
-        x += itens[i] * 3;
+    for (let i = 0; i < itensLocais.length; i++) {
+        x += itensLocais[i] * 3;
     }
 
     function mostrarInfo() {
-        const valores = ["Dado 1", "Dado 2", "Dado 3"];
+        let valores = ["Dado 1", "Dado 2", "Dado 3"];
         for (let j = 0; j < valores.length; j++) {
             console.log("Info:", valores[j]);
         }
