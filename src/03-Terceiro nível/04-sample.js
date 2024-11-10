@@ -8,7 +8,9 @@ async function buscarPersonagemENave(idPersonagem) {
             const nave = await respostaNave.json();
 
             const tripulacao = parseInt(nave.crew);
-            if (tripulacao > 100) {
+            const capacidadeMaximaNavePequena = 100;
+
+            if (tripulacao > capacidadeMaximaNavePequena) {
                 console.log(`A nave ${nave.name} é considerada grande com ${tripulacao} tripulantes.`);
             } else {
                 console.log(`A nave ${nave.name} é pequena com ${tripulacao} tripulantes.`);
