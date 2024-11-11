@@ -1,38 +1,28 @@
-async function buscarEspecie() { 
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = "";
-
-    const id = document.getElementById("especieId").value;
-
-    if (!id || id <= 0) {
-        mostrarErro("ID inválido. Insira um número positivo.", "danger");
-        return;
-    }
-    
+const urlDaEspecie= "https://swapi.dev/api/species/1/";
+async function buscarEspecie() {
     try {
-        const resposta = await fetch("https://swapi.dev/api/species/1/");
-        
+        const resposta = await fetch(urlDaEspecie);
+
+  
         if (!resposta.ok) {
-            throw new Error("Especie não encontrado. Verifique o ID e tente novamente.");
+            mostrarErro();
+            return;
         }
 
         const especie = await resposta.json();
-        exibirEspecie(especie.average_lifespan.toUpperCase());
+        exibirExpectativaDeVida(especie.average_lifespan);
+
     } catch (erro) {
-        console.error(erro.message, "danger");
+        mostrarErro(`Erro ao buscar uma nave: ${  erro.message}`);
     }
 }
+
+
+function exibirExpectativaDeVida(espera) {
+    console.log(`Expectativa de vida média: ${espera} anos`);
+}
+
+function mostrarErro() {
+    console.error("Erro: Espécie não encontrada ");
+}
 buscarEspecie();
-
-function mostrarErro(mensagem, tipo) {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = `<div class="alert alert-${tipo}" role="alert">${mensagem}</div>`;
-}
-
-function exibirEspecie(especie) {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = `
-      <div class="alert alert-success" role="alert">
-        <strong>Nome da especie:</strong> ${especie.average_lifespan}<br>
-      </div>`;
-}

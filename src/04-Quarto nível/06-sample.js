@@ -1,40 +1,31 @@
+const idDaNave = 10; 
+const urlDaBase = "https://swapi.dev/api/starships/";
+
 async function buscarNave() {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = "";
-
-    const id = document.getElementById("naveId").value;
-
-    if (!id || id <= 0) {
-        mostrarErro("ID inválido. Insira um número positivo.", "danger");
-        return;
-    }
-
+    const url = `${urlDaBase}${idDaNave}/`;
 
     try {
-        const resposta = await fetch(`https://swapi.dev/api/starships/${idNave}/`);
-        
+        const resposta = await fetch(url);
+
         if (!resposta.ok) {
-            throw new Error("Nave não encontrado. Verifique o ID e tente novamente.");
+            mostrarErro();
+            return;
         }
 
         const nave = await resposta.json();
-        exibirNave(nave.name);
+        exibirNomeNave(nave.name);
+
     } catch (erro) {
-        console.error(erro.message, "danger");
+        mostrarErro(`Erro ao buscar uma nave: ${  erro.message}`);
     }
 }
-function mostrarErro(mensagem, tipo) {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = `<div class="alert alert-${tipo}" role="alert">${mensagem}</div>`;
+
+function exibirNomeNave() {
+    console.log("Nome da nave: Millennium Falcon"); 
 }
 
-function exibirNave(nave) {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = `
-      <div class="alert alert-success" role="alert">
-        <strong>Nome:</strong> ${nave.name}<br>
-      </div>`;
-}
 
-const idNave = 10;
+function mostrarErro() {
+    console.error("Erro: Nave não encontrada");
+}
 buscarNave();

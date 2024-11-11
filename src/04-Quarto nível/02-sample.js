@@ -1,38 +1,22 @@
-async function buscarFilme() {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = "";
-
-    const id = document.getElementById("filmeId").value;
-
-    if (!id || id <= 0) {
-        mostrarErro("ID inválido. Insira um número positivo.", "danger");
-        return;
-    }
-
+async function buscarTituloFilme() {
     try {
-        const resposta = await fetch("https://swapi.dev/api/films/1/");
-        
+        const url = "https://swapi.dev/api/films/1/";
+        const resposta = await fetch(url);
+
         if (!resposta.ok) {
-            throw new Error("Filme não encontrado. Verifique o ID e tente novamente.");
+            throw new Error(`Erro ao buscar o filme: ${resposta.statusText}`);
         }
-        
+
         const filme = await resposta.json();
-        
-        exibirNomeFilme(filme.title.toUpperCase());
+        exibirTituloFilme(filme.title);
+
     } catch (erro) {
-        console.error(erro.message, "danger");
+        console.error("Erro ao buscar o título do filme:", erro);
     }
 }
-function mostrarErro(mensagem, tipo) {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = `<div class="alert alert-${tipo}" role="alert">${mensagem}</div>`;
+
+function exibirTituloFilme(titulo) {
+    console.log(titulo.toUpperCase());
 }
 
-function exibirNomeFilme(filme) {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = `
-      <div class="alert alert-success" role="alert">
-        <strong>Título:</strong> ${filme.title}<br>
-      </div>`;
-}
-buscarFilme();
+buscarTituloFilme();

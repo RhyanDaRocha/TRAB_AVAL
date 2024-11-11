@@ -1,39 +1,30 @@
-async function buscarPersonagem() { 
-    const personagemid = 1000000000000;
-    
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = "";
+const idPersonagemInvalido = 1000000000000; 
+const urlDosPersonagens = "https://swapi.dev/api/people/";
 
-    const id = document.getElementById("personagemId").value;
+async function buscarPersonagem() {
+    const url = `${urlDosPersonagens}${idPersonagemInvalido}/`;
 
-    if (!id || id <= 0) {
-        mostrarErro("ID inválido. Insira um número positivo.", "danger");
-        return;
-    }
-    
     try {
-        const resposta = await fetch(`https://swapi.dev/api/people/${personagemid}/`);
+        const resposta = await fetch(url);
+
         if (!resposta.ok) {
-            throw new Error("Personagem não encontrado. Verifique o ID e tente novamente.");
+            mostrarErro("Personagem não encontrado. Verifique o ID e tente novamente.");
+            return;
         }
 
         const personagem = await resposta.json();
         exibirNomePersonagem(personagem.name);
+
     } catch (erro) {
-        console.error(erro.message, "danger");
+        mostrarErro(`Erro ao buscar personagem: ${  erro.message}`);
     }
 }
+
+function exibirNomePersonagem() {
+    console.log("Nome do personagem: Personagem não encontrado ou ID inválido."); 
+}
+
+function mostrarErro() {
+    console.error("Erro: algo saiu mal");
+}
 buscarPersonagem();
-
-function mostrarErro(mensagem, tipo) {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = `<div class="alert alert-${tipo}" role="alert">${mensagem}</div>`;
-}
-
-function exibirNomePersonagem(personagem) {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = `
-      <div class="alert alert-success" role="alert">
-        <strong>Nome:</strong> ${personagem.name}<br>
-      </div>`;
-}

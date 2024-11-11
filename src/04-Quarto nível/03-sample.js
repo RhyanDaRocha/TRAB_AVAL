@@ -1,24 +1,18 @@
-async function buscarDados() {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = "";
-
-    const id = document.getElementById("dadosId").value;
-
-    if (!id || id <= 0) {
-        mostrarErro("ID inválido. Insira um número positivo.", "danger");
-        return;
-    }
-
+async function buscarDadosPersonagem() {
     try {
-        const dados = { name: "Luke", idade: 23 }; 
-        const personagem = dados; 
-        console.log(personagem.name);
+        const dados = "{ \"name\": \"Luke\", \"idade\": 23 }"; 
+        const personagem = JSON.parse(dados);
+
+        exibirNomePersonagem(personagem.name);
+        
     } catch (erro) {
-        console.error(erro.message, "danger");
+        console.error("Erro ao analisar os dados JSON:", erro); 
     }
 }
-function mostrarErro(mensagem, tipo) {
-    const mensagemDiv = document.getElementById("mensagem");
-    mensagemDiv.innerHTML = `<div class="alert alert-${tipo}" role="alert">${mensagem}</div>`;
+
+function exibirNomePersonagem(nome) {
+    console.log(nome);
 }
-buscarDados();
+
+buscarDadosPersonagem();
+
