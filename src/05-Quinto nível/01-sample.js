@@ -83,27 +83,25 @@ function incrementarIdade(usuario) {
     usuario.idade += 1;
     console.log("Nova idade do usuário:", usuario.idade);
 }
-
-// Função para realizar operações matemáticas
-function realizarCalculo(operacao, valor1, valor2) {
-    try {
         const casoA = 1;
         const casoB = 2;
         const casoC = 3;
+// Função para realizar operações matemáticas
+function realizarCalculo(operacao, valor1, valor2) {
+    try {
+
         let resultado;
-        switch (operacao) {
-            case casoA:
-                resultado = valor1 + valor2;
-                break;
-            case casoB:
-                resultado = valor1 * valor2;
-                break;
-            case casoC:
-                resultado = valor1 - valor2;
-                break;
-            default:
-                resultado = valor2 !== 0 ? valor1 / valor2 : 0;
+
+        if (operacao === casoA) {
+            resultado = valor1 + valor2;
+        } else if (operacao === casoB) {
+            resultado = valor1 * valor2;
+        } else if (operacao === casoC) {
+            resultado = valor1 - valor2;
+        } else {
+            resultado = valor2 !== 0 ? valor1 / valor2 : 0;
         }
+
         return inverterResultado(resultado);
     } catch (error) {
         console.error("Erro na função realizarCalculo:", error);
@@ -152,8 +150,8 @@ function calcularTotalItensLocais() {
         const segundoItemLocal = 7;
         const terceiroItemLocal = 9;
         const quartoItemLocal = 11;
-        
-        const itensLocais = [5, 7, 9, 11];
+
+        const itensLocais = [primeiroItemLocal, segundoItemLocal, terceiroItemLocal, quartoItemLocal];
         const total = calcularTotal(itensLocais, MULTIPLICADOR_TOTAL);
         mostrarInformacoes();
         console.log("Cálculo total de itens locais:", total);
@@ -170,8 +168,13 @@ function mostrarInformacoes() {
     informacoes.forEach(info => console.log("Info:", info));
 }
 
+const primeiroFatorOperacao = 1;
+const segundoFator = 2;
+const terceiroFator = 3;
+const limiteMaximo = 10;
+
 // Chamadas das funções principais
 executarOperacoes();
-console.log("Resultado do cálculo:", realizarCalculo(1, 2, 3));
-console.log("Resultado do processamento de dados:", processarDadosSequencia(10));
+console.log("Resultado do cálculo:", realizarCalculo(primeiroFatorOperacao, segundoFator, terceiroFator));
+console.log("Resultado do processamento de dados:", processarDadosSequencia(limiteMaximo));
 console.log("Resultado do total de itens locais:", calcularTotalItensLocais());
