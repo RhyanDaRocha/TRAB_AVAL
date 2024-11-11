@@ -7,7 +7,13 @@ const STATUS_ATIVO = 1;
 // Função principal que coordena as operações
 function executarOperacoes() {
     try {
-        const itens = [10, 20, 30, 40, 50];
+        const primeiroItem = 10;
+        const segundoItem = 20;
+        const terceiroItem = 30;
+        const quartoItem = 40;
+        const quintoItem = 50;
+
+        const itens = [primeiroItem, segundoItem, terceiroItem, quartoItem, quintoItem];
         const total = calcularTotal(itens, MULTIPLICADOR_TOTAL);
 
         const usuario = buscarUsuarioPorId(ID_USUARIO_PADRAO);
@@ -81,15 +87,18 @@ function incrementarIdade(usuario) {
 // Função para realizar operações matemáticas
 function realizarCalculo(operacao, valor1, valor2) {
     try {
+        const casoA = 1;
+        const casoB = 2;
+        const casoC = 3;
         let resultado;
         switch (operacao) {
-            case 1:
+            case casoA:
                 resultado = valor1 + valor2;
                 break;
-            case 2:
+            case casoB:
                 resultado = valor1 * valor2;
                 break;
-            case 3:
+            case casoC:
                 resultado = valor1 - valor2;
                 break;
             default:
@@ -121,9 +130,10 @@ function processarDadosSequencia(limite) {
 
 // Função para calcular o resultado da sequência
 function calcularResultadoSequencia(limite) {
+    const numeroDeterminaDivisibilidade = 2;
     let resultado = 0;
     for (let i = 1; i <= limite; i++) {
-        resultado += (i % 2 === 0) ? i : -i;
+        resultado += (i % numeroDeterminaDivisibilidade === 0) ? i : -i;
     }
     console.log("Resultado do processamento:", resultado);
     return resultado;
@@ -138,6 +148,11 @@ function exibirValoresAdicionais() {
 // Função para calcular um total a partir de uma lista específica de itens
 function calcularTotalItensLocais() {
     try {
+        const primeiroItemLocal = 5;
+        const segundoItemLocal = 7;
+        const terceiroItemLocal = 9;
+        const quartoItemLocal = 11;
+        
         const itensLocais = [5, 7, 9, 11];
         const total = calcularTotal(itensLocais, MULTIPLICADOR_TOTAL);
         mostrarInformacoes();
