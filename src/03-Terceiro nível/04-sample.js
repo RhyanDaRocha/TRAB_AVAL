@@ -1,27 +1,62 @@
-async function buscarPersonagemENave(idPersonagem) {
+function detalharPersonagem(idPersonagem) {
+
+    buscarPersonagem(idPersonagem);
+    buscarNaveDoPersonagem(idPersonagem);
+    tamanhoDaNaveDoPersonagem(idPersonagem);
+
+}
+
+async function buscarPersonagem(idPersonagem) {
+
+    const respostaPersonagem = await fetch(`https://swapi.dev/api/people/${idPersonagem}/`);
+    return await respostaPersonagem.json();
+
+}
+
+async function buscarNaveDoPersonagem(idPersonagem) {
     try {
-        const respostaPersonagem = await fetch(`https://swapi.dev/api/people/${idPersonagem}/`);
-        const personagem = await respostaPersonagem.json();
 
-        if (personagem.starships.length > 0) {
-            const respostaNave = await fetch(personagem.starships[0]);
-            const nave = await respostaNave.json();
+        const personagemEncontrado = await buscarPersonagem(idPersonagem);
 
-            const tripulacao = parseInt(nave.crew);
-            const capacidadeMaximaNavePequena = 100;
+        if (personagemEncontrado.starships.length > 0) {
 
-            if (tripulacao > capacidadeMaximaNavePequena) {
-                console.log(`A nave ${nave.name} é considerada grande com ${tripulacao} tripulantes.`);
-            } else {
-                console.log(`A nave ${nave.name} é pequena com ${tripulacao} tripulantes.`);
-            }
+            const respostaNave = await fetch(personagemEncontrado.starships[0]);
+            return await respostaNave.json();
+
         } else {
-            console.log(`${personagem.name} não possui naves registradas.`);
+            console.log(`${personagemEncontrado.name} não possui naves registradas.`);
+            return null;
         }
 
     } catch (erro) {
+
         console.error("Erro ao buscar o personagem ou sua nave:", erro);
+        return null;
+
     }
 }
 
-buscarPersonagemENave(1);
+async function tamanhoDaNaveDoPersonagem(idPersonagem) {
+    try {
+        const naveEncontrada = await buscarNaveDoPersonagem(idPersonagem);
+
+        const tripulacao = parseInt(naveEncontrada.crew);
+        const capacidadeMaximaNavePequena = 100;
+
+        if (tripulacao > capacidadeMaximaNavePequena) {
+
+            console.log(`A nave ${naveEncontrada.name} é considerada grande com ${tripulacao} tripulantes.`);
+
+        } else {
+
+            console.log(`A nave ${naveEncontrada.name} é pequena com ${tripulacao} tripulantes.`);
+
+        }
+    } catch (erro) {
+
+        console.error("Erro ao buscar o personagem ou sua nave:", erro);
+        
+    }
+}
+
+detalharPersonagem(1);
