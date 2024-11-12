@@ -67,6 +67,28 @@ function verificarCriacaoRecente(usuario) {
         console.log(`${usuario.nome} é um usuário antigo.`);
     }
 }
+const dataCriacaoCarlos = new Date(2023, 1, 15);  
+const dataUltimoLoginCarlos = new Date(2024, 8, 1);  
+
+const dataCriacaoAna = new Date(2020, 4, 22);  
+const dataUltimoLoginAna = new Date(2024, 7, 31);  
+
+const dataCriacaoJose= new Date(2022, 10, 5);  
+const dataUltimoLoginJose = new Date(2024, 6, 10);  
+
+const dataCriacaoMaria = new Date(2021, 2, 10);  
+const dataUltimoLoginMaria = new Date(2023, 12, 25);  
+
+const cargoAdmin = "admin";
+const cargoGuest = "guest";
+
+const ativo = true;
+const inativo = false;
+
+const tentativasCarlos = 2;
+const tentativasAna = 3;
+const tentativasJosé = 5;
+const tentativasMaria = 7;
 
 const usuarios = [
     new Usuario(
