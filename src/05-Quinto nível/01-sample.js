@@ -1,180 +1,118 @@
-// Constantes para evitar números mágicos
-const MULTIPLICADOR_TOTAL = 3;
-const ID_USUARIO_PADRAO = 42;
-const IDADE_MINIMA_ATUALIZACAO = 18;
-const STATUS_ATIVO = 1;
+const MULTIPLICADOR_PADRAO = 3;
+const ID_USUARIO_ATIVO = 42;
 
-// Função principal que coordena as operações
-function executarOperacoes() {
+function principal() {
+
+    const primeiroItem = 10;
+    const segundoItem = 20;
+    const terceiroItem = 30;
+    const quartoItem = 40;
+    const quintoItem = 50;
+    const itens = [primeiroItem, segundoItem, terceiroItem, quartoItem, quintoItem];
+    const usuario = obterUsuario(ID_USUARIO_ATIVO);
+    const total = calcularTotalItens(itens, MULTIPLICADOR_PADRAO);
+
+    verificarStatusUsuario(usuario);
+    console.log("O total dos itens é:", total);
+    atualizarDadosUsuario(usuario);
+}
+
+function calcularTotalItens(itens, multiplicador) {
+    return itens.reduce((acc, item) => acc + item * multiplicador, 0);
+}
+
+function obterUsuario(id) {
     try {
-        const primeiroItem = 10;
-        const segundoItem = 20;
-        const terceiroItem = 30;
-        const quartoItem = 40;
-        const quintoItem = 50;
-
-        const itens = [primeiroItem, segundoItem, terceiroItem, quartoItem, quintoItem];
-        const total = calcularTotal(itens, MULTIPLICADOR_TOTAL);
-
-        const usuario = buscarUsuarioPorId(ID_USUARIO_PADRAO);
-        verificarUsuarioAtivo(usuario, STATUS_ATIVO);
-
-        console.log("O total é:", total);
-        if (usuario) {
-            atualizarDadosUsuario(usuario);
+        if (id === ID_USUARIO_ATIVO) {
+            return { id: 42, nome: "João Silva", idade: 25, ativo: 1 };
+        } else if (id === id) {
+            return { id: 43, nome: "Maria Souza", idade: 28, ativo: 0 };
+        } else {
+            console.error("Usuário não encontrado");
+            return null;
         }
     } catch (error) {
-        console.error("Erro na função executarOperacoes:", error);
-    }
-}
-
-// Função para calcular o total multiplicando itens por um fator
-function calcularTotal(itens, multiplicador) {
-    return itens.reduce((total, item) => total + item * multiplicador, 0);
-}
-
-// Função para buscar um usuário pelo ID
-function buscarUsuarioPorId(id) {
-    try {
-        const usuarios = {
-            42: { id: 42, nome: "João Silva", idade: 25, ativo: STATUS_ATIVO },
-            43: { id: 43, nome: "Maria Souza", idade: 28, ativo: 0 },
-        };
-        return usuarios[id] || null;
-    } catch (error) {
-        console.error("Erro na função buscarUsuarioPorId:", error);
+        console.error("Erro ao obter usuário:", error);
         return null;
     }
 }
 
-// Função para verificar o status do usuário e logar a informação
-function verificarUsuarioAtivo(usuario, statusAtivo) {
-    try {
-        if (usuario && usuario.ativo === statusAtivo) {
-            console.log("Usuário está ativo");
-        } else {
-            console.log("Usuário não está ativo");
-        }
-    } catch (error) {
-        console.error("Erro na função verificarUsuarioAtivo:", error);
-    }
+function verificarStatusUsuario(usuario) {
+    const estaAtivo = usuario && usuario.ativo === 1;
+    console.log(estaAtivo ? "Usuário está ativo" : "Usuário não está ativo");
 }
-
-// Função para atualizar dados do usuário
+const numeroQueDeterminaMaioridade = 18;
 function atualizarDadosUsuario(usuario) {
-    try {
-        if (usuario && usuario.idade > IDADE_MINIMA_ATUALIZACAO) {
-            console.log("Atualizando usuário:", usuario.id);
-            salvarDados();
-            incrementarIdade(usuario);
-        }
-    } catch (error) {
-        console.error("Erro na função atualizarDadosUsuario:", error);
+    if (usuario && usuario.idade > numeroQueDeterminaMaioridade) {
+        console.log("Atualizando usuário:", usuario.id);
+        salvarDados();
+        usuario.idade += 1;
+        console.log("Nova idade do usuário:", usuario.idade);
     }
 }
 
-// Função auxiliar para simular a persistência de dados
 function salvarDados() {
-    console.log("Dados salvos com sucesso!");
-}
-
-// Função auxiliar para incrementar a idade do usuário
-function incrementarIdade(usuario) {
-    usuario.idade += 1;
-    console.log("Nova idade do usuário:", usuario.idade);
-}
-        const casoA = 1;
-        const casoB = 2;
-        const casoC = 3;
-// Função para realizar operações matemáticas
-function realizarCalculo(operacao, valor1, valor2) {
     try {
-
-        let resultado;
-
-        if (operacao === casoA) {
-            resultado = valor1 + valor2;
-        } else if (operacao === casoB) {
-            resultado = valor1 * valor2;
-        } else if (operacao === casoC) {
-            resultado = valor1 - valor2;
-        } else {
-            resultado = valor2 !== 0 ? valor1 / valor2 : 0;
-        }
-
-        return inverterResultado(resultado);
+        console.log("Dados salvos com sucesso!");
     } catch (error) {
-        console.error("Erro na função realizarCalculo:", error);
-        return null;
+        console.error("Erro ao salvar dados:", error);
     }
 }
 
-// Função para inverter o resultado (como string) após o cálculo
-function inverterResultado(valor) {
-    return valor.toString().split('').reverse().join('');
+function calcularOperacao(operacao, valor1, valor2) {
+    const operacoes = {
+        1: () => valor1 + valor2,
+        2: () => valor1 * valor2,
+        3: () => valor1 - valor2,
+        4: () => valor2 !== 0 ? valor1 / valor2 : 0
+    };
+
+    const resultado = operacoes[operacao] ? operacoes[operacao]() : null;
+    return resultado ? inverterResultado(resultado) : null;
 }
 
-// Função para processar dados com base em um limite fornecido
-function processarDadosSequencia(limite) {
-    try {
-        const resultado = calcularResultadoSequencia(limite);
-        exibirValoresAdicionais();
-        return resultado;
-    } catch (error) {
-        console.error("Erro na função processarDadosSequencia:", error);
-        return null;
-    }
+function inverterResultado(resultado) {
+    return resultado.toString().split("").reverse().join("");
 }
 
-// Função para calcular o resultado da sequência
-function calcularResultadoSequencia(limite) {
-    const numeroDeterminaDivisibilidade = 2;
-    let resultado = 0;
-    for (let i = 1; i <= limite; i++) {
-        resultado += (i % numeroDeterminaDivisibilidade === 0) ? i : -i;
-    }
+function processarDados(n) {
+    const resultado = calcularSomaAlternada(n);
     console.log("Resultado do processamento:", resultado);
+    exibirDados(["Valor 1", "Valor 2", "Valor 3"]);
+    return resultado;
+}
+const numeroDivisivel = 2;
+function calcularSomaAlternada(n) {
+    let resultado = 0;
+    for (let i = 1; i <= n; i++) {
+        resultado += (i % numeroDivisivel === 0) ? i : -i;
+    }
     return resultado;
 }
 
-// Função para exibir valores adicionais (simulação)
-function exibirValoresAdicionais() {
-    const valores = ["Valor 1", "Valor 2", "Valor 3"];
-    valores.forEach(valor => console.log("Valor:", valor));
+function exibirDados(dados) {
+    dados.forEach((dado) => console.log("Dados:", dado));
 }
 
-// Função para calcular um total a partir de uma lista específica de itens
-function calcularTotalItensLocais() {
-    try {
-        const primeiroItemLocal = 5;
-        const segundoItemLocal = 7;
-        const terceiroItemLocal = 9;
-        const quartoItemLocal = 11;
-
-        const itensLocais = [primeiroItemLocal, segundoItemLocal, terceiroItemLocal, quartoItemLocal];
-        const total = calcularTotal(itensLocais, MULTIPLICADOR_TOTAL);
-        mostrarInformacoes();
-        console.log("Cálculo total de itens locais:", total);
-        return total;
-    } catch (error) {
-        console.error("Erro na função calcularTotalItensLocais:", error);
-        return null;
-    }
+function funcaoAuxiliar() {
+    const primeiroItemLocal = 5;
+    const segundoItemLocal = 7;
+    const terceiroItemLocal = 9;
+    const quartoItemLocal = 11;
+    const itens = [primeiroItemLocal, segundoItemLocal, terceiroItemLocal, quartoItemLocal];
+    const total = calcularTotalItens(itens, MULTIPLICADOR_PADRAO);
+    exibirInformacao(["Dado 1", "Dado 2", "Dado 3"]);
+    console.log("Cálculo total dos itens auxiliares:", total);
+    return total;
 }
 
-// Função para exibir informações adicionais
-function mostrarInformacoes() {
-    const informacoes = ["Info 1", "Info 2", "Info 3"];
-    informacoes.forEach(info => console.log("Info:", info));
+function exibirInformacao(valores) {
+    valores.forEach((valor) => console.log("Info:", valor));
 }
-
-const primeiroFatorOperacao = 1;
-const segundoFator = 2;
-const terceiroFator = 3;
+const primeiroFator = 2;
+const segundoFator = 3;
 const limiteMaximo = 10;
-
-// Chamadas das funções principais
-executarOperacoes();
-console.log("Resultado do cálculo:", realizarCalculo(primeiroFatorOperacao, segundoFator, terceiroFator));
-console.log("Resultado do processamento de dados:", processarDadosSequencia(limiteMaximo));
-console.log("Resultado do total de itens locais:", calcularTotalItensLocais());
+principal();
+console.log("Resultado do cálculo:", calcularOperacao(1, primeiroFator, segundoFator));
+console.log("Resultado do processamento de dados:", processarDados(limiteMaximo));
+console.log("Resultado da função auxiliar:", funcaoAuxiliar());
