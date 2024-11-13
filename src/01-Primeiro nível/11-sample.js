@@ -1,4 +1,28 @@
-const MILISSEGUNDOS_EM_UM_ANO = 31536000000;
+const milisegundoEmUmAno = 31536000000;
+
+const ano2023 = 2023;
+const ano2024 = 2024;
+const ano2020 = 2020;
+const ano2022 = 2022;
+const ano2021 = 2021;
+const mesFevereiro = 1;
+const mesMaio = 4;
+const mesOutubro = 9;
+const mesMarco = 2;
+const mesJulho = 6;   // Definido como 'mesJuly' anteriormente
+const mesDezembro = 11;   // Definido como 'mesDecember' anteriormente
+const dia15 = 15;
+const dia1 = 1;
+const dia22 = 22;
+const dia31 = 31;
+const dia5 = 5;
+const dia10 = 10;
+const dia25 = 25;
+const tentativasCarlos = 2;
+const tentativasAna = 3;
+const tentativasJose = 5;
+const tentativasMaria = 7;
+const limiteTentativas = 4;
 
 class Usuario {
     constructor(informacoesPessoais, dadosConta, status, tentativasLogin) {
@@ -61,69 +85,46 @@ function usuarioMaisRecente(usuario1, usuario2) {
 
 function verificarCriacaoRecente(usuario) {
     const agora = new Date();
-    if (agora - usuario.dataCriacao < MILISSEGUNDOS_EM_UM_ANO) {
+    if (agora - usuario.dataCriacao < milisegundoEmUmAno) {
         console.log(`${usuario.nome} foi criado recentemente.`);
     } else {
         console.log(`${usuario.nome} é um usuário antigo.`);
     }
 }
-const dataCriacaoCarlos = new Date(2023, 1, 15);  
-const dataUltimoLoginCarlos = new Date(2024, 8, 1);  
-
-const dataCriacaoAna = new Date(2020, 4, 22);  
-const dataUltimoLoginAna = new Date(2024, 7, 31);  
-
-const dataCriacaoJose= new Date(2022, 10, 5);  
-const dataUltimoLoginJose = new Date(2024, 6, 10);  
-
-const dataCriacaoMaria = new Date(2021, 2, 10);  
-const dataUltimoLoginMaria = new Date(2023, 12, 25);  
-
-const cargoAdmin = "admin";
-const cargoGuest = "guest";
-
-const ativo = true;
-const inativo = false;
-
-const tentativasCarlos = 2;
-const tentativasAna = 3;
-const tentativasJosé = 5;
-const tentativasMaria = 7;
 
 const usuarios = [
     new Usuario(
-        { nome: "Carlos", idade: 25, cargo: "admin", dataCriacao: new Date(2023, 1, 15) },
-        { dataUltimoLogin: new Date(2024, 8, 1) },
+        { nome: "Carlos", idade: 25, cargo: "admin", dataCriacao: new Date(ano2023, mesFevereiro, dia15) },
+        { dataUltimoLogin: new Date(ano2024, mesOutubro, dia1) },
         { ativo: true },
-        { tentativasFalhas: 2 }
+        { tentativasFalhas: tentativasCarlos }
     ),
     new Usuario(
-        { nome: "Ana", idade: 30, cargo: "guest", dataCriacao: new Date(2020, 4, 22) },
-        { dataUltimoLogin: new Date(2024, 7, 31) },
+        { nome: "Ana", idade: 30, cargo: "guest", dataCriacao: new Date(ano2020, mesMaio, dia22) },
+        { dataUltimoLogin: new Date(ano2024, mesOutubro, dia31) },
         { ativo: true },
-        { tentativasFalhas: 3 }
+        { tentativasFalhas: tentativasAna }
     ),
     new Usuario(
-        { nome: "José", idade: 29, cargo: "admin", dataCriacao: new Date(2022, 10, 5) },
-        { dataUltimoLogin: new Date(2024, 6, 10) },
+        { nome: "José", idade: 29, cargo: "admin", dataCriacao: new Date(ano2022, mesOutubro, dia5) },
+        { dataUltimoLogin: new Date(ano2024, mesJulho, dia10) },
         { ativo: false },
-        { tentativasFalhas: 5 }
+        { tentativasFalhas: tentativasJose }
     ),
     new Usuario(
-        { nome: "Maria", idade: 35, cargo: "guest", dataCriacao: new Date(2021, 2, 10) },
-        { dataUltimoLogin: new Date(2023, 12, 25) },
+        { nome: "Maria", idade: 35, cargo: "guest", dataCriacao: new Date(ano2021, mesMarco, dia10) },
+        { dataUltimoLogin: new Date(ano2023, mesDezembro, dia25) },
         { ativo: false },
-        { tentativasFalhas: 7 }
+        { tentativasFalhas: tentativasMaria }
     )
 ];
 
 console.log(`Usuários admin: ${contarAdmins(usuarios)}`);
-
 usuarios[0].verificarAtividade();
 usuarios[1].verificarAcesso();
+const usuarioEscolhido = 2;
+const usuarioEscolhidoVerificarCriacao = 3;
+verificarTentativasExcessivas(usuarios[usuarioEscolhido], limiteTentativas);
+console.log(usuarioMaisRecente(usuarios[0], usuarios[usuarioEscolhidoVerificarCriacao]));
+verificarCriacaoRecente(usuarios[usuarioEscolhidoVerificarCriacao]);
 
-verificarTentativasExcessivas(usuarios[2], 4);
-
-console.log(usuarioMaisRecente(usuarios[0], usuarios[3]));
-
-verificarCriacaoRecente(usuarios[3]);
